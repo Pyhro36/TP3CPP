@@ -1,0 +1,33 @@
+./analog									./analog
+
+NOM 
+	./analog - analyseur de  fichiers journaux type logs apache, d'échange entre client et serveur pour un site internet donné
+
+SYNOPSIS
+	./analog [options] nomfichier.log
+
+DESCRPITION
+	l'application ./analog permet d'analyser un fichier journal, .txt ou .log, où sont consignées toutes les requêtes HTTP effectuées par les clients au sevreur, sur un site internet, ainsi qu'un certain nombre d'inforamtion pour chacune : adresse IP du client, fichier atteint, date/heure, type de requête, code de retour serveur, quantité de données échangées, référenceur (adresse sur laquelle se trouvait le navigateur quand il a effectué la requête), et identifiant du navigateur. A partir de toutes ces données, l'application peut afficher au choix une statistique des sites les plus consultés, ou bien générer un fichier au format GraphViz (.dot) représentant les parcours entres les différentes pages et fichiers du site internet, le tout en fonctions de différents critères définis par les options.
+
+OPTIONS
+	nomfichier.log
+		A remplacer par le nom du fichier log à analyser
+
+		Par défaut, c'est-à-dire quand il n'y a aucune option, l'application affichera sur la console sous forme textuelle la liste des 10 documents du site les plus consultés par ordre décroissant de popularité, avec une présentation de la forme : "/nomDoucment.html ( <nombre de hits> )"
+		Les options décrites si dessous peuvent être cumulées.
+
+	-g nomfichier.dot	
+		Avec cette option, l'application produit dans le dossier courant un fihier du nom mis à la place de nomfichier.dot au format GraphViz, permetant à ce dernier de générer un graphe. Ce graphe représentera les parcours entre les différents docuements du site internet. Les noeuds du graphe représenteront les documents du site internet et un noeud correspondant aux documents d'autres sites ("others"), pour les clients qui accèdent au site à partir d'un autre. Les parcours d'un fichier à un autre seront représentés par des arcs orientés du document d'origine, le référenceur, au document atteint et pondérés par nombre de fois que ce parcours a été effectué.
+		Si nomfichier.dot est remplcé par du vide, le fichier .dot généré aura le même nom que le fichier log, à l'extention près bien sûr.
+		Pour générer une image à partir du fichier GraphViz nomfichier.dot, vous pourrez ensuite appeler la commande suivante : $ dot -Tpng -o nomfichier.png nomfichier.dot (remplacer nomfichier.png par le nom du fichier image à générer nomfichier.dot par le nom du fichier GraphViz)
+
+	-e	Cette option permet d'exclure dans l'analyse du log (décrite ci-dessus) tous les documents du site internet de type image, css, ou javascript
+	
+	-t heure	
+		Cette option permet de ne prendre en compte dans l'analyse du log (décrite ci-dessus) que les requêtes qui sont dans le créneau horaire journalier correspondant à l'intervalle [heure; heure + 1[
+	
+		
+
+	
+
+	

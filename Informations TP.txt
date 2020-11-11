@@ -1,0 +1,10 @@
+Choisir structures de données adaptées au graphe à réaliser
+
+Choisir dans la STL la structure de données la plus proche
+
+pas de char* sauf pour nom de fichier, utiliser String
+
+Test : realisation de test pour chaque sous-répertoire, .out pour vérifier le resultat
+
+ 
+
